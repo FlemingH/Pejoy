@@ -111,7 +111,9 @@
                     <p>{{ errorMessage }}</p>
                 </div>
 
-                <div class="ui teal submit button" @click="registerButtonOnClick">注册</div>
+                <div class="ui teal submit button"
+                     :class="(loadingState==1)? 'loading':'' "
+                     @click="registerButtonOnClick">注册</div>
 
                 <div style="float: right; margin-top: 10px">
                     <a href="#" @click="loginOnClick">登录</a>
