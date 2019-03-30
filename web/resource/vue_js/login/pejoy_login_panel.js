@@ -120,8 +120,11 @@ Vue.component('PejoyLoginPanel', {
                 self.showErrorMessage();
                 console.log("check login info fail", respones);
 
-            } else if(!respones.messageData && respones.messageState == "success") {
+            } else if(respones.messageState == "success") {
                 console.log("check login info success", respones);
+
+                // go page main with prams
+                // this.toPejoyUserMain();
             }
         },
         handleRegister(respones) {
@@ -190,6 +193,7 @@ Vue.component('PejoyLoginPanel', {
                 username: this.curUsername.trim(),
                 password: this.curPassword.trim(),
                 role_code: 'yh',
+                group_code: 'rj1621',
                 user_info: '{}'
             }
 
@@ -212,7 +216,17 @@ Vue.component('PejoyLoginPanel', {
                 self.showErrorMessage();
                 console.log("register user fail", respones);
             });
-        }
+        },
+        toPejoyUserMain() {
+            this.$router.push(
+                {
+                    name: "main",
+                    params: {
+                        username: ""
+                    }
+                }
+            )
+        },
     },
     mounted: function() {
         this.init();
