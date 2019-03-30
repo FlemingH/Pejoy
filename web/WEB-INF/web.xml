@@ -5,16 +5,16 @@
          version="4.0">
 
     <welcome-file-list>
-        <welcome-file>/index.html</welcome-file>
+        <welcome-file>/WEB-INF/pejoy/main/main.jsp</welcome-file>
     </welcome-file-list>
 
     <servlet>
-        <servlet-name>MainView</servlet-name>
-        <jsp-file>/WEB-INF/pejoy/main/main.html</jsp-file>
+        <servlet-name>loginView</servlet-name>
+        <jsp-file>/WEB-INF/pejoy/login/login.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
-        <servlet-name>MainView</servlet-name>
-        <url-pattern>/main</url-pattern>
+        <servlet-name>loginView</servlet-name>
+        <url-pattern>/login</url-pattern>
     </servlet-mapping>
 
 </web-app>
