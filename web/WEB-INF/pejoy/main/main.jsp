@@ -124,7 +124,8 @@
                 <div class="three wide column"></div>
                 <div class="ten wide column">
                     <pejoy-main-user-mgr-modal
-                            :user_list="userList">
+                            :user_list="userList"
+                            @delete-user="deleteUser">
                     </pejoy-main-user-mgr-modal>
                 </div>
                 <div class="three wide column"></div>
@@ -344,6 +345,7 @@
                     <th>group_code</th>
                     <th>user_info</th>
                     <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -353,10 +355,38 @@
                     <td>{{ content.role_code }}</td>
                     <td>{{ content.group_code }}</td>
                     <td>{{ content.user_info }}</td>
-                    <td></td>
+                    <td>
+                        <i class="edit icon editIcon"
+                            @click="editOnClick(content)">
+                        </i>
+                    </td>
+                    <td>
+                        <i class="ban icon deleteIcon"
+                            @click="deleteOnClick(content)">
+                        </i>
+                    </td>
                 </tr>
             </tbody>
         </table>
+
+        <!-- delete modal -->
+        <div class="ui basic modal deleteModal">
+            <div class="ui icon header">
+                <i class="ban icon"></i>
+                确认删除用户？<br>
+                用户名：{{ curUsername }}，角色代号：{{ curRoleCode }}，小组代号：{{ curGroupCode }}
+            </div>
+            <div class="actions">
+                <div class="ui red basic cancel inverted button">
+                    <i class="remove icon"></i>
+                    No
+                </div>
+                <div class="ui green ok inverted button" @click="confirmDeleteUser(curUsername)">
+                    <i class="checkmark icon"></i>
+                    Yes
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script src="resource/vue_js/main/pejoy_main_user_mgr_modal.js"></script>

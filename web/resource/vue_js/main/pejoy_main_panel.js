@@ -114,6 +114,27 @@ Vue.component('PejoyMainPanel', {
                 console.log("fetch user list fail", respones);
             });
         },
+
+        deleteUser(username) {
+
+            var self = this;
+
+            var option = {
+                username: username
+            };
+
+            $.ajax({
+                url: "http://127.0.0.1:1123/pejoy/main/user/deleteUser",
+                type: "POST",
+                data: option
+            }).done(function (respones) {
+                console.log("delete user success", respones);
+            }).fail(function (respones) {
+                console.log("delete user fail", respones);
+            }).always(function () {
+                self.fetchUserList();
+            });
+        },
     },
     beforeMount: function() {
         this.loadLocalStorageLoginData();

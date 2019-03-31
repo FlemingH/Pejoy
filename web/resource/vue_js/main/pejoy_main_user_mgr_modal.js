@@ -10,7 +10,10 @@ Vue.component('PejoyMainUserMgrModal', {
     data: function () {
         return{
             title: "用户管理",
-            userList: []
+            userList: [],
+            curUsername: "",
+            curRoleCode: "",
+            curGroupCode: "",
         }
     },
     watch: {
@@ -20,7 +23,30 @@ Vue.component('PejoyMainUserMgrModal', {
     },
     methods: {
         init() {
+            this.reset();
             this.userList = this.user_list;
+        },
+        reset() {
+            this.curUsername = "";
+            this.curRoleCode = "";
+            this.curGroupCode = "";
+        },
+        deleteOnClick(content) {
+
+            this.reset();
+
+            this.curUsername = content.username;
+            this.curRoleCode = content.role_code;
+            this.curGroupCode = content.group_code;
+
+            $('.deleteModal').modal('show');
+        },
+        editOnClick(content) {
+
+        },
+
+        confirmDeleteUser(username) {
+            this.$emit("delete-user", username);
         }
     },
     mounted: function() {
