@@ -6,6 +6,8 @@ Vue.component('PejoyMainPanel', {
         return{
             userData: "",
             userList: [],
+            groupList: [],
+            roleList: [],
             pageType: "",
             authorityLevel: 0,
 
@@ -23,9 +25,11 @@ Vue.component('PejoyMainPanel', {
 
             this.assignMainModalAccess();
 
-            // fetchUserList
+            // fetchUserList & fetchGroupList & fetchRoleList for gly
             if(this.authorityLevel > 1) {
                 this.fetchUserList();
+                this.fetchGroupList();
+                this.fetchRoleList();
             }
         },
         loadLocalStorageLoginData() {
@@ -100,6 +104,8 @@ Vue.component('PejoyMainPanel', {
 
             var self = this;
 
+            self.userList = [];
+
             $.ajax({
                 url: "http://127.0.0.1:1123/pejoy/main/user/fetchUserList",
                 type: "POST"
@@ -112,6 +118,48 @@ Vue.component('PejoyMainPanel', {
                 }
             }).fail(function (respones) {
                 console.log("fetch user list fail", respones);
+            });
+        },
+
+        fetchGroupList() {
+
+            var self = this;
+
+            self.groupList = [];
+
+            $.ajax({
+                url: "http://127.0.0.1:1123/pejoy/login/fetchGroupList",
+                type: "POST"
+            }).done(function (respones) {
+                if(respones.length > 0) {
+                    console.log("fetch group list success", respones);
+                    self.groupList = respones;
+                } else {
+                    console.log("fetch group list fail", respones);
+                }
+            }).fail(function (respones) {
+                console.log("fetch group list fail", respones);
+            });
+        },
+
+        fetchRoleList() {
+
+            var self = this;
+
+            self.roleList = [];
+
+            $.ajax({
+                url: "http://127.0.0.1:1123/pejoy/main/user/fetchRoleList",
+                type: "POST"
+            }).done(function (respones) {
+                if(respones.length > 0) {
+                    console.log("fetch role list success", respones);
+                    self.roleList = respones;
+                } else {
+                    console.log("fetch role list fail", respones);
+                }
+            }).fail(function (respones) {
+                console.log("fetch role list fail", respones);
             });
         },
 

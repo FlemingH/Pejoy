@@ -125,6 +125,8 @@
                 <div class="ten wide column">
                     <pejoy-main-user-mgr-modal
                             :user_list="userList"
+                            :group_list="groupList"
+                            :role_list="roleList"
                             @delete-user="deleteUser">
                     </pejoy-main-user-mgr-modal>
                 </div>
