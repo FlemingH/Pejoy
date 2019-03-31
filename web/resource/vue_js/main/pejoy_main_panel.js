@@ -6,6 +6,7 @@ Vue.component('PejoyMainPanel', {
         return{
             userData: {},
             pageType: "",
+            authorityLevel: 0
         }
     },
     watch: {
@@ -16,12 +17,14 @@ Vue.component('PejoyMainPanel', {
             if(this.isUserDataNull()) {
                 this.postRouter("/login");
             }
+
+            this.assignMainModalAccess();
         },
         loadLocalStorageLoginData() {
             this.userData = localStorage.getItem("pejoy/login/data");
         },
         isUserDataNull() {
-            if(!this.userData || JSON.stringify(this.userData) == "{}") {
+            if(!this.userData || this.userData == "{}") {
                 return true;
             }
             var dataObject = JSON.parse(this.userData);
@@ -41,6 +44,18 @@ Vue.component('PejoyMainPanel', {
             temp.submit();
             return temp;
         },
+
+        // decide which modal can be access by different user (role_code)
+        assignMainModalAccess() {
+            var role_code = JSON.parse(this.userData).role_code;
+            if(role_code == 'gly') {
+                this.authorityLevel = 2;
+            } else if(role_code == 'zz') {
+                this.authorityLevel = 1;
+            } else {
+                this.authorityLevel = 0;
+            }
+        }
     },
     beforeMount: function() {
         this.loadLocalStorageLoginData();

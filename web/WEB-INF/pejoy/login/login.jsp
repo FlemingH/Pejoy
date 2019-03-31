@@ -10,6 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="icon" href="resource/img/favicon.ico" type="image/x-icon" />
 
     <script src="https://cdn.staticfile.org/jquery/3.3.1/jquery.js"></script>
     <script src="https://cdn.staticfile.org/vue/2.6.10/vue.js"></script>
