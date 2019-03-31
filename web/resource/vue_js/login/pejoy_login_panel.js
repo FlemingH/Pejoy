@@ -313,6 +313,6 @@ Vue.component('PejoyLoginPanel', {
     },
     mounted: function() {
         this.init();
-        console.debug("NewGoMainPanel-template mounted");
+        console.debug("PejoyLoginPanel-template mounted");
     }
 });

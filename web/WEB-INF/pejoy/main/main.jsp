@@ -17,7 +17,27 @@
     <!-- import semantic -->
     <link href="resource/semantic/Semantic-UI-CSS-master/semantic.css" rel="stylesheet">
     <script src="resource/semantic/Semantic-UI-CSS-master/semantic.js"></script>
+
+    <!-- page css -->
+    <link href="resource/vue_css/main/pejoy_main_panel.css" rel="stylesheet">
 </head>
 <body>
+
+<div id="app">
+    <pejoy-main-panel>
+    </pejoy-main-panel>
+</div>
+
+<!------------------------------------panel start------------------------------------>
+<template id="PejoyMainPanel-template">
+    <div>
+    </div>
+</template>
+<script src="resource/vue_js/main/pejoy_main_panel.js"></script>
+<!------------------------------------panel end------------------------------------>
+
+<script>
+    new Vue({ el: "#app" });
+</script>
 </body>
 </html>
