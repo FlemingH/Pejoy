@@ -90,7 +90,9 @@
             <div class="row">
                 <div class="three wide column"></div>
                 <div class="ten wide column">
-                    <pejoy-main-user-modal>
+                    <pejoy-main-user-modal
+                        :user_info_loading_state="userInfoLoadingState"
+                        @modify-user-info="modifyUserInfo">
                     </pejoy-main-user-modal>
                 </div>
                 <div class="three wide column"></div>
@@ -181,6 +183,123 @@
 <template id="PejoyMainUserModal-template">
     <div>
         <div class="ui blue large header">{{ title }}</div>
+        <div class="ui form">
+
+            <div class="inline fields">
+                <label>你最喜欢的水果?</label>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="fruit" tabindex="0" class="hidden" value="apple">
+                        <label>苹果</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="fruit" tabindex="0" class="hidden" value="orange">
+                        <label>橘子</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="fruit" tabindex="0" class="hidden" value="banana">
+                        <label>香蕉</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="fruit" tabindex="0" class="hidden" value="lemon">
+                        <label>柠檬</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="inline fields">
+                <label>你最喜欢的季节?</label>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="season" tabindex="0" class="hidden" value="spring">
+                        <label>春</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="season" tabindex="0" class="hidden" value="summer">
+                        <label>夏</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="season" tabindex="0" class="hidden" value="autumn">
+                        <label>秋</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="season" tabindex="0" class="hidden" value="winter">
+                        <label>冬</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="inline fields">
+                <label>周末你最想干什么?</label>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="weekend" tabindex="0" class="hidden" value="home">
+                        <label>宅在家</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="weekend" tabindex="0" class="hidden" value="Film">
+                        <label>看电影</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="weekend" tabindex="0" class="hidden" value="book">
+                        <label>去图书馆</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="weekend" tabindex="0" class="hidden" value="friend">
+                        <label>找朋友</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="inline fields">
+                <label>你认为柠檬是什么味道的?</label>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="lemon" tabindex="0" class="hidden" value="bitter">
+                        <label>苦的</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="lemon" tabindex="0" class="hidden" value="acid">
+                        <label>酸的</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="lemon" tabindex="0" class="hidden" value="puckery">
+                        <label>涩的</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="lemon" tabindex="0" class="hidden" value="sweet">
+                        <label>甜的</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui blue submit button" :class="(userInfoLoadingState==1)? 'loading':'' "
+                 @click="submitUserInfoOnClick">提交</div>
+        </div>
     </div>
 </template>
 <script src="resource/vue_js/main/pejoy_main_user_modal.js"></script>

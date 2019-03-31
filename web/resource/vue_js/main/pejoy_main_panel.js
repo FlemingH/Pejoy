@@ -4,9 +4,11 @@ Vue.component('PejoyMainPanel', {
     },
     data: function () {
         return{
-            userData: {},
+            userData: "",
             pageType: "",
-            authorityLevel: 0
+            authorityLevel: 0,
+
+            userInfoLoadingState: 0,
         }
     },
     watch: {
@@ -55,6 +57,32 @@ Vue.component('PejoyMainPanel', {
             } else {
                 this.authorityLevel = 0;
             }
+        },
+
+
+        modifyUserInfo(userInfo) {
+            var self = this;
+
+            var curUser = JSON.parse(self.userData);
+
+            var options = {
+                username: curUser.username,
+                user_info: userInfo
+            }
+
+            self.userInfoLoadingState = 1;
+
+            $.ajax({
+                url: "http://127.0.0.1:1123/pejoy/main/user/modifyUserInfo",
+                type: "POST",
+                data: options
+            }).done(function (respones) {
+                self.userInfoLoadingState = 0;
+                console.log("modify user info success", respones);
+            }).fail(function (respones) {
+                self.userInfoLoadingState = 0;
+                console.log("check login info fail", respones);
+            });
         }
     },
     beforeMount: function() {
