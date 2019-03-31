@@ -31,6 +31,7 @@
 <!------------------------------------panel start------------------------------------>
 <template id="PejoyMainPanel-template">
     <div>
+        {{ userData }}
     </div>
 </template>
 <script src="resource/vue_js/main/pejoy_main_panel.js"></script>

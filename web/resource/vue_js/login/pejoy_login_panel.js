@@ -158,8 +158,8 @@ Vue.component('PejoyLoginPanel', {
                 // write params in localStorage
                 localStorage.setItem("pejoy/login/data", respones.messageData)
 
-                // go page main
-                this.toPejoyMain("/");
+                // goPejoyMain use post
+                this.postRouter("/");
             }
         },
         handleRegister(respones) {
@@ -297,8 +297,7 @@ Vue.component('PejoyLoginPanel', {
             });
         },
 
-        // goPejoyMain use post
-        toPejoyMain(url) {
+        postRouter(url) {
             var temp = document.createElement("form");
             temp.action = url;
             temp.method = "post";
