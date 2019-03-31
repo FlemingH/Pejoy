@@ -123,7 +123,8 @@
             <div class="row" v-show="authorityLevel > 1">
                 <div class="three wide column"></div>
                 <div class="ten wide column">
-                    <pejoy-main-user-mgr-modal>
+                    <pejoy-main-user-mgr-modal
+                            :user_list="userList">
                     </pejoy-main-user-mgr-modal>
                 </div>
                 <div class="three wide column"></div>
@@ -334,6 +335,28 @@
 <template id="PejoyMainUserMgrModal-template">
     <div>
         <div class="ui pink large header">{{ title }}</div>
+        <table class="ui pink table">
+            <thead>
+                <tr>
+                    <th>username</th>
+                    <th>password</th>
+                    <th>role_code</th>
+                    <th>group_code</th>
+                    <th>user_info</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="content in userList">
+                    <td>{{ content.username }}</td>
+                    <td>{{ content.password }}</td>
+                    <td>{{ content.role_code }}</td>
+                    <td>{{ content.group_code }}</td>
+                    <td>{{ content.user_info }}</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </template>
 <script src="resource/vue_js/main/pejoy_main_user_mgr_modal.js"></script>

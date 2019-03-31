@@ -5,6 +5,7 @@ Vue.component('PejoyMainPanel', {
     data: function () {
         return{
             userData: "",
+            userList: [],
             pageType: "",
             authorityLevel: 0,
 
@@ -21,6 +22,11 @@ Vue.component('PejoyMainPanel', {
             }
 
             this.assignMainModalAccess();
+
+            // fetchUserList
+            if(this.authorityLevel > 1) {
+                this.fetchUserList();
+            }
         },
         loadLocalStorageLoginData() {
             this.userData = localStorage.getItem("pejoy/login/data");
@@ -88,7 +94,26 @@ Vue.component('PejoyMainPanel', {
                 self.userInfoLoadingState = 0;
                 console.log("check login info fail", respones);
             });
-        }
+        },
+
+        fetchUserList() {
+
+            var self = this;
+
+            $.ajax({
+                url: "http://127.0.0.1:1123/pejoy/main/user/fetchUserList",
+                type: "POST"
+            }).done(function (respones) {
+                if(respones.length > 0) {
+                    self.userList = respones;
+                    console.log("fetch user list success", respones);
+                } else {
+                    console.log("fetch user list fail", respones);
+                }
+            }).fail(function (respones) {
+                console.log("fetch user list fail", respones);
+            });
+        },
     },
     beforeMount: function() {
         this.loadLocalStorageLoginData();
