@@ -31,11 +31,181 @@
 <!------------------------------------panel start------------------------------------>
 <template id="PejoyMainPanel-template">
     <div>
-        {{ userData }}
+        <div class="ui grid">
+
+            <!-- recommend -->
+            <div class="row" style="margin-top: 40px">
+                <div class="three wide column"></div>
+                <div class="ten wide column">
+                    <pejoy-main-recommend-modal>
+                    </pejoy-main-recommend-modal>
+                </div>
+                <div class="three wide column"></div>
+            </div>
+
+            <!-- book -->
+            <div class="row">
+                <div class="three wide column"></div>
+                <div class="ten wide column">
+                    <pejoy-main-book-modal>
+                    </pejoy-main-book-modal>
+                </div>
+                <div class="three wide column"></div>
+            </div>
+
+            <!-- cart -->
+            <div class="row">
+                <div class="three wide column"></div>
+                <div class="ten wide column">
+                    <pejoy-main-cart-modal>
+                    </pejoy-main-cart-modal>
+                </div>
+                <div class="three wide column"></div>
+            </div>
+
+            <!-- order -->
+            <div class="row">
+                <div class="three wide column"></div>
+                <div class="ten wide column">
+                    <pejoy-main-order-modal>
+                    </pejoy-main-order-modal>
+                </div>
+                <div class="three wide column"></div>
+            </div>
+
+            <!-- user -->
+            <div class="row">
+                <div class="three wide column"></div>
+                <div class="ten wide column">
+                    <pejoy-main-user-modal>
+                    </pejoy-main-user-modal>
+                </div>
+                <div class="three wide column"></div>
+            </div>
+
+            <!-- book mgr -->
+            <div class="row">
+                <div class="three wide column"></div>
+                <div class="ten wide column">
+                    <pejoy-main-book-mgr-modal>
+                    </pejoy-main-book-mgr-modal>
+                </div>
+                <div class="three wide column"></div>
+            </div>
+
+            <!-- order mgr -->
+            <div class="row">
+                <div class="three wide column"></div>
+                <div class="ten wide column">
+                    <pejoy-main-order-mgr-modal>
+                    </pejoy-main-order-mgr-modal>
+                </div>
+                <div class="three wide column"></div>
+            </div>
+
+            <!-- user mgr -->
+            <div class="row">
+                <div class="three wide column"></div>
+                <div class="ten wide column">
+                    <pejoy-main-user-mgr-modal>
+                    </pejoy-main-user-mgr-modal>
+                </div>
+                <div class="three wide column"></div>
+            </div>
+        </div>
     </div>
 </template>
 <script src="resource/vue_js/main/pejoy_main_panel.js"></script>
 <!------------------------------------panel end------------------------------------>
+
+
+
+<!------------------------------------recommand start------------------------------------>
+<template id="PejoyMainRecommendModal-template">
+    <div>
+        <div class="ui orange large header">{{ title }}</div>
+    </div>
+</template>
+<script src="resource/vue_js/main/pejoy_main_recommend_modal.js"></script>
+
+
+
+
+<!------------------------------------book start------------------------------------>
+<template id="PejoyMainBookModal-template">
+    <div>
+        <div class="ui olive large header">{{ title }}</div>
+    </div>
+</template>
+<script src="resource/vue_js/main/pejoy_main_book_modal.js"></script>
+
+
+
+
+<!------------------------------------cart start------------------------------------>
+<template id="PejoyMainCartModal-template">
+    <div>
+        <div class="ui green large header">{{ title }}</div>
+    </div>
+</template>
+<script src="resource/vue_js/main/pejoy_main_cart_modal.js"></script>
+
+
+
+
+<!------------------------------------order start------------------------------------>
+<template id="PejoyMainOrderModal-template">
+    <div>
+        <div class="ui teal large header">{{ title }}</div>
+    </div>
+</template>
+<script src="resource/vue_js/main/pejoy_main_order_modal.js"></script>
+
+
+
+
+<!------------------------------------user start------------------------------------>
+<template id="PejoyMainUserModal-template">
+    <div>
+        <div class="ui blue large header">{{ title }}</div>
+    </div>
+</template>
+<script src="resource/vue_js/main/pejoy_main_user_modal.js"></script>
+
+
+
+
+<!------------------------------------book mgr start------------------------------------>
+<template id="PejoyMainBookMgrModal-template">
+    <div>
+        <div class="ui purple large header">{{ title }}</div>
+    </div>
+</template>
+<script src="resource/vue_js/main/pejoy_main_book_mgr_modal.js"></script>
+
+
+
+
+<!------------------------------------order mgr start------------------------------------>
+<template id="PejoyMainOrderMgrModal-template">
+    <div>
+        <div class="ui violet large header">{{ title }}</div>
+    </div>
+</template>
+<script src="resource/vue_js/main/pejoy_main_order_mgr_modal.js"></script>
+
+
+
+
+<!------------------------------------user mgr start------------------------------------>
+<template id="PejoyMainUserMgrModal-template">
+    <div>
+        <div class="ui pink large header">{{ title }}</div>
+    </div>
+</template>
+<script src="resource/vue_js/main/pejoy_main_user_mgr_modal.js"></script>
+
+
 
 <script>
     new Vue({ el: "#app" });
