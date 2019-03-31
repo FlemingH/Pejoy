@@ -5,11 +5,17 @@ Vue.component('PejoyMainUserModal', {
             type: Number,
             default: 0,
             required: true
+        },
+        user_data: {
+            type: String,
+            default: "",
+            required: true
         }
     },
     data: function () {
         return{
             title: "个人信息",
+            userData: "",
             userInfo: {},
             userInfoLoadingState: 0
         }
@@ -17,14 +23,46 @@ Vue.component('PejoyMainUserModal', {
     watch: {
         user_info_loading_state: function (newVal, oldVal) {
             this.userInfoLoadingState = newVal;
+        },
+        user_data: function (newVal, oldVal) {
+            this.userData = newVal;
         }
     },
     methods: {
         init() {
+            this.userData = this.user_data;
             this.initAllCheckBox();
         },
         initAllCheckBox() {
+            var curUserInfoObj = JSON.parse(JSON.parse(this.userData).user_info).question;
+
             $('.ui .checkbox').checkbox();
+
+            var fruit = document.getElementsByName("fruit");
+            var season = document.getElementsByName("season");
+            var weekend = document.getElementsByName("weekend");
+            var lemon = document.getElementsByName("lemon");
+
+            for(key in fruit){
+                if(fruit[key].value == curUserInfoObj.fruit) {
+                    fruit[key].checked = true;
+                }
+            }
+            for(key in season){
+                if(season[key].value == curUserInfoObj.season) {
+                    season[key].checked = true;
+                }
+            }
+            for(key in weekend){
+                if(weekend[key].value == curUserInfoObj.weekend) {
+                    weekend[key].checked = true;
+                }
+            }
+            for(key in lemon){
+                if(lemon[key].value == curUserInfoObj.lemon) {
+                    lemon[key].checked = true;
+                }
+            }
         },
         getCheckValue(){
             var fruit = document.getElementsByName("fruit");

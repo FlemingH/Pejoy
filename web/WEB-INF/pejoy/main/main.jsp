@@ -91,8 +91,9 @@
                 <div class="three wide column"></div>
                 <div class="ten wide column">
                     <pejoy-main-user-modal
-                        :user_info_loading_state="userInfoLoadingState"
-                        @modify-user-info="modifyUserInfo">
+                            :user_info_loading_state="userInfoLoadingState"
+                            :user_data="userData"
+                            @modify-user-info="modifyUserInfo">
                     </pejoy-main-user-modal>
                 </div>
                 <div class="three wide column"></div>

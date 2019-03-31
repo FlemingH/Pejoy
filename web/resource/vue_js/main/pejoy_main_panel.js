@@ -64,6 +64,7 @@ Vue.component('PejoyMainPanel', {
             var self = this;
 
             var curUser = JSON.parse(self.userData);
+            curUser.user_info = userInfo;
 
             var options = {
                 username: curUser.username,
@@ -78,6 +79,10 @@ Vue.component('PejoyMainPanel', {
                 data: options
             }).done(function (respones) {
                 self.userInfoLoadingState = 0;
+
+                // write new data in localStorage
+                localStorage.setItem("pejoy/login/data", JSON.stringify(curUser))
+
                 console.log("modify user info success", respones);
             }).fail(function (respones) {
                 self.userInfoLoadingState = 0;
