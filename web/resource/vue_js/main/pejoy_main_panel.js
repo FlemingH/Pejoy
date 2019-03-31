@@ -12,6 +12,8 @@ Vue.component('PejoyMainPanel', {
             authorityLevel: 0,
 
             userInfoLoadingState: 0,
+
+            userModifyLoadingState: 0,
         }
     },
     watch: {
@@ -183,6 +185,30 @@ Vue.component('PejoyMainPanel', {
                 self.fetchUserList();
             });
         },
+
+        // modify user without userInfo
+        modifyUser(user) {
+
+            var self = this;
+
+            self.userModifyLoadingState = 1;
+
+            console.log(user);
+
+            $.ajax({
+                url: "http://127.0.0.1:1123/pejoy/main/user/modifyUser",
+                type: "POST",
+                data: user
+            }).done(function (respones) {
+                self.userModifyLoadingState = 0;
+                console.log("modify user success", respones);
+            }).fail(function (respones) {
+                self.userModifyLoadingState = 0;
+                console.log("modify user fail", respones);
+            }).always(function () {
+                self.fetchUserList();
+            });
+        }
     },
     beforeMount: function() {
         this.loadLocalStorageLoginData();

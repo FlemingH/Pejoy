@@ -124,10 +124,12 @@
                 <div class="three wide column"></div>
                 <div class="ten wide column">
                     <pejoy-main-user-mgr-modal
+                            :user_modify_loading_state="userModifyLoadingState"
                             :user_list="userList"
                             :group_list="groupList"
                             :role_list="roleList"
-                            @delete-user="deleteUser">
+                            @delete-user="deleteUser"
+                            @modify-user="modifyUser">
                     </pejoy-main-user-mgr-modal>
                 </div>
                 <div class="three wide column"></div>
@@ -372,7 +374,7 @@
         </table>
 
         <!-- delete modal -->
-        <div class="ui basic modal deleteModal">
+        <div class="ui basic modal deleteUserModal">
             <div class="ui icon header">
                 <i class="ban icon"></i>
                 确认删除用户？<br>
@@ -386,6 +388,61 @@
                 <div class="ui green ok inverted button" @click="confirmDeleteUser(curUsername)">
                     <i class="checkmark icon"></i>
                     Yes
+                </div>
+            </div>
+        </div>
+
+        <!-- edit modal -->
+        <div class="ui modal editUserModal">
+            <i class="close icon"></i>
+            <div class="header">
+                修改信息
+            </div>
+            <div class="content">
+                <div class="ui grid">
+                    <div class="row">
+                        <div class="three wide column"></div>
+                        <div class="five wide column">
+                            用户名：
+                            <div class="ui input">
+                                <input type="text" class="editUsernameInput" readonly>
+                            </div>
+                        </div>
+                        <div class="five wide column">
+                            密码：
+                            <div class="ui input">
+                                <input type="text" class="editPasswordInput">
+                            </div>
+                        </div>
+                        <div class="three wide column"></div>
+                    </div>
+                    <div class="row">
+                        <div class="three wide column"></div>
+                        <div class="five wide column">
+                            角色：
+                            <select class="ui dropdown roleDropDown">
+                                <option :value="content.value" v-for="content in roleDropDownData">{{ content.name }}</option>
+                            </select>
+                        </div>
+                        <div class="five wide column">
+                            小组：
+                            <select class="ui dropdown groupDropDown">
+                                <option :value="content.value" v-for="content in groupDropDownData">{{ content.name }}</option>
+                            </select>
+                        </div>
+                        <div class="three wide column"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="actions">
+                <div class="ui black deny button">
+                    取消
+                </div>
+                <div class="ui positive right labeled icon button"
+                     :class="(userModifyLoadingState==1)? 'loading':'' "
+                     @click="confirmEditUser">
+                    修改
+                    <i class="checkmark icon"></i>
                 </div>
             </div>
         </div>
