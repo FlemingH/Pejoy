@@ -50,7 +50,8 @@
             <div class="row">
                 <div class="three wide column"></div>
                 <div class="ten wide column">
-                    <pejoy-main-recommend-modal>
+                    <pejoy-main-recommend-modal
+                            :recommend_list="recommendList">
                     </pejoy-main-recommend-modal>
                 </div>
                 <div class="three wide column"></div>
@@ -146,6 +147,32 @@
 <template id="PejoyMainRecommendModal-template">
     <div>
         <div class="ui orange large header">{{ title }}</div>
+        <div class="ui special cards">
+            <div class="card" v-for="content in recommendBookList">
+                <div class="blurring dimmable image">
+                    <div class="ui dimmer">
+                        <div class="content">
+                            <div class="center">
+                                <div class="ui inverted button">添加到购物车</div>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="resource/img/null.png">
+                </div>
+                <div class="content">
+                    <a class="header">{{ content.book_name }}</a>
+                    <div class="meta">
+                        <span class="date">Created in {{ content.recommend_time }}</span>
+                    </div>
+                </div>
+                <div class="extra content">
+                    <a>
+                        <i class="users icon"></i>
+                        {{ content.zz }}
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script src="resource/vue_js/main/pejoy_main_recommend_modal.js"></script>

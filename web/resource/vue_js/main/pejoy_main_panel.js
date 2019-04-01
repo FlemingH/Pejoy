@@ -8,6 +8,7 @@ Vue.component('PejoyMainPanel', {
             userList: [],
             groupList: [],
             roleList: [],
+            recommendList: [],
             pageType: "",
             authorityLevel: 0,
 
@@ -33,6 +34,8 @@ Vue.component('PejoyMainPanel', {
                 this.fetchGroupList();
                 this.fetchRoleList();
             }
+
+            this.fetchRecommendListByGroupId();
         },
         loadLocalStorageLoginData() {
             this.userData = localStorage.getItem("pejoy/login/data");
@@ -208,7 +211,27 @@ Vue.component('PejoyMainPanel', {
             }).always(function () {
                 self.fetchUserList();
             });
-        }
+        },
+
+        fetchRecommendListByGroupId() {
+
+            var self = this;
+
+            var option = {
+                group_code: JSON.parse(this.userData).group_code
+            }
+
+            $.ajax({
+                url: "http://127.0.0.1:1123/pejoy/main/recommend/fetchRecommendByGroup",
+                type: "POST",
+                data: option
+            }).done(function (respones) {
+                self.recommendList = respones;
+                console.log("fetch recommend success", respones);
+            }).fail(function (respones) {
+                console.log("fetch recommend fail", respones);
+            });
+        },
     },
     beforeMount: function() {
         this.loadLocalStorageLoginData();
