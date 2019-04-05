@@ -61,7 +61,8 @@
             <div class="row">
                 <div class="three wide column"></div>
                 <div class="ten wide column">
-                    <pejoy-main-book-modal>
+                    <pejoy-main-book-modal
+                            :book_list="bookList">
                     </pejoy-main-book-modal>
                 </div>
                 <div class="three wide column"></div>
@@ -184,6 +185,26 @@
 <template id="PejoyMainBookModal-template">
     <div>
         <div class="ui olive large header">{{ title }}</div>
+        <table class="ui olive table">
+            <thead>
+                <tr>
+                    <th>book_id</th>
+                    <th>book_info</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="content in bookList">
+                    <td>{{ content.book_id }}</td>
+                    <td>{{ content.book_info }}</td>
+                    <td>
+                        <i class="cart plus icon addToCartIcon"
+                           @click="addToCartOnClick(content)">
+                        </i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </template>
 <script src="resource/vue_js/main/pejoy_main_book_modal.js"></script>
