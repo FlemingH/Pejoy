@@ -269,7 +269,7 @@ Vue.component('PejoyMainPanel', {
             }
 
             var options = {
-                recommend_id: this.guid(),
+                recommend_id: book.book_id,
                 group_code: JSON.parse(this.userData).group_code,
                 recommend_info: JSON.stringify(recomment_info),
                 recommend_time: new Date().getTime()
