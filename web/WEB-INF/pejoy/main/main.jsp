@@ -62,7 +62,8 @@
                 <div class="three wide column"></div>
                 <div class="ten wide column">
                     <pejoy-main-book-modal
-                            :book_list="bookList">
+                            :book_list="bookList"
+                            :authority_level="authorityLevel">
                     </pejoy-main-book-modal>
                 </div>
                 <div class="three wide column"></div>
@@ -191,6 +192,7 @@
                     <th>book_id</th>
                     <th>book_info</th>
                     <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -200,6 +202,10 @@
                     <td>
                         <i class="cart plus icon addToCartIcon"
                            @click="addToCartOnClick(content)">
+                        </i>
+                    </td>
+                    <td>
+                        <i class="share icon shareIcon" :class="(authorityLevel < 1)? 'disabled':''">
                         </i>
                     </td>
                 </tr>
