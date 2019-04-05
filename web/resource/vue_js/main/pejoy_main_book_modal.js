@@ -13,10 +13,14 @@ Vue.component('PejoyMainBookModal', {
         }
     },
     data: function () {
-        return{
+        return {
             title: "书籍",
             bookList: [],
-            authorityLevel: 0
+            authorityLevel: 0,
+            csTitle: "",
+            csMessage: "",
+            curBook: {},
+            curCSModal: "",
         }
     },
     watch: {
@@ -32,9 +36,43 @@ Vue.component('PejoyMainBookModal', {
             this.bookList = this.book_list;
             this.authorityLevel = this.authority_level;
         },
+        reset() {
+            this.csTitle = "";
+            this.csMessage = "";
+            this.curCSModal = "";
+            this.curBook = {};
+        },
         addToCartOnClick(book) {
             console.log(book);
-        }
+        },
+        shareOnClick(book) {
+
+            this.reset();
+
+            // save book for confirm
+            this.curBook = {
+                "book_id": book.book_id,
+                "book_info": book.book_info
+            };
+
+            this.curCSModal = "share";
+
+            var bookInfoObj = JSON.parse(book.book_info);
+
+            this.csTitle = "分享书籍";
+            this.csMessage = "书名：" + bookInfoObj.book_name
+                            + "，作者：" + bookInfoObj.author
+                            + "，价格：￥" + bookInfoObj.price;
+
+            $('.csModal').modal('show');
+        },
+        confirmCS() {
+
+            if(this.curCSModal == "share") {
+                this.$emit("share-book", this.curBook);
+            } else if(this.curCSModal == "addCart") {
+            }
+        },
     },
     mounted: function() {
         this.init();

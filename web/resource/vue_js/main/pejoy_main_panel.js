@@ -64,6 +64,15 @@ Vue.component('PejoyMainPanel', {
             return temp;
         },
 
+        // generate uuid
+        S4() {
+            return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+        },
+        guid() {
+            return (this.S4()+this.S4()+"-"+this.S4()+"-"
+                +this.S4()+"-"+this.S4()+"-"+this.S4()+this.S4()+this.S4());
+        },
+
         // decide which modal can be access by different user (role_code)
         assignMainModalAccess() {
             var role_code = JSON.parse(this.userData).role_code;
@@ -250,6 +259,36 @@ Vue.component('PejoyMainPanel', {
             });
 
         },
+
+        shareBook(book) {
+
+            var self = this;
+
+            var recomment_info = {
+                book: JSON.stringify(book)
+            }
+
+            var options = {
+                recommend_id: this.guid(),
+                group_code: JSON.parse(this.userData).group_code,
+                recommend_info: JSON.stringify(recomment_info),
+                recommend_time: new Date().getTime()
+            }
+
+            console.log(options);
+
+            $.ajax({
+                url: "http://127.0.0.1:1123/pejoy/main/recommend/recommendBook",
+                type: "POST",
+                data: options,
+            }).done(function (respones) {
+                console.log("share book success", respones);
+            }).fail(function (respones) {
+                console.log("share book fail", respones);
+            }).always(function () {
+                self.fetchRecommendListByGroupId();
+            });
+        }
     },
     beforeMount: function() {
         this.loadLocalStorageLoginData();

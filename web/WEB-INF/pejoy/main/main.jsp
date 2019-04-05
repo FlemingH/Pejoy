@@ -63,7 +63,8 @@
                 <div class="ten wide column">
                     <pejoy-main-book-modal
                             :book_list="bookList"
-                            :authority_level="authorityLevel">
+                            :authority_level="authorityLevel"
+                            @share-book="shareBook">
                     </pejoy-main-book-modal>
                 </div>
                 <div class="three wide column"></div>
@@ -205,12 +206,33 @@
                         </i>
                     </td>
                     <td>
-                        <i class="share icon shareIcon" :class="(authorityLevel < 1)? 'disabled':''">
+                        <i class="share icon shareIcon" :class="(authorityLevel < 1)? 'disabled':''"
+                            @click="shareOnClick(content)">
                         </i>
                     </td>
                 </tr>
             </tbody>
         </table>
+
+
+        <!-- add cart or share modal -->
+        <div class="ui basic modal csModal">
+            <div class="ui icon header">
+                <i class="share icon"></i>
+                {{ csTitle }}<br>
+                {{ csMessage }}
+            </div>
+            <div class="actions">
+                <div class="ui red basic cancel inverted button">
+                    <i class="remove icon"></i>
+                    No
+                </div>
+                <div class="ui green ok inverted button" @click="confirmCS()">
+                    <i class="checkmark icon"></i>
+                    Yes
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script src="resource/vue_js/main/pejoy_main_book_modal.js"></script>
