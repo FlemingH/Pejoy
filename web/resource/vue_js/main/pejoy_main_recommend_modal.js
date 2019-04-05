@@ -52,9 +52,13 @@ Vue.component('PejoyMainRecommendModal', {
 
             for(var i = 0; i < this.recommendList.length; i++) {
                 var recommend_info = JSON.parse(this.recommendList[i].recommend_info);
+                var book = recommend_info.book;
+                var book_info = JSON.parse(book).book_info;
+                var book_name = JSON.parse(book_info).book_name;
+                var group_code = this.recommendList[i].group_code;
                 book = {
-                    book_name: recommend_info.book_name,
-                    zz: recommend_info.zz,
+                    book_name: book_name,
+                    zz: group_code,
                     recommend_time: this.timestampToString(this.recommendList[i].recommend_time)
                 }
                 this.recommendBookList.push(book);
